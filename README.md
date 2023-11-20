@@ -1,5 +1,10 @@
 # React-shop-cloudfront
 
+- Automated Deployment:
+
+1. https://d1ozlgaj1ky6ky.cloudfront.net/
+2. http://rsstack-rsbucketaa7381f2-igfxiiu2yfpu.s3-website-eu-west-1.amazonaws.com/
+
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
 
 - [Vite](https://vitejs.dev/) as a project bundler
