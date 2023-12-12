@@ -1,10 +1,12 @@
-import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
-import { CloudFrontWebDistribution, OriginAccessIdentity } from 'aws-cdk-lib/aws-cloudfront';
-import { AccountRootPrincipal, PolicyStatement } from 'aws-cdk-lib/aws-iam';
-import { BlockPublicAccess, Bucket } from 'aws-cdk-lib/aws-s3';
-import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
-import { Construct } from 'constructs';
-
+import { CfnOutput, RemovalPolicy, Stack, StackProps } from "aws-cdk-lib";
+import {
+  CloudFrontWebDistribution,
+  OriginAccessIdentity
+} from "aws-cdk-lib/aws-cloudfront";
+import { AccountRootPrincipal, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { BlockPublicAccess, Bucket } from "aws-cdk-lib/aws-s3";
+import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { Construct } from "constructs";
 
 export class RsStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -23,7 +25,7 @@ export class RsStack extends Stack {
     const oai = new OriginAccessIdentity(this, "RsOriginAccessIdentity", {
       comment: "Cloudfront OAI"
     });
- 
+
     bucket.grantRead(oai);
 
     bucket.addToResourcePolicy(
@@ -60,6 +62,16 @@ export class RsStack extends Stack {
       destinationBucket: bucket,
       distribution: distribution,
       distributionPaths: ["/*"]
+    });
+
+    new CfnOutput(this, "CfnOutCloudFrontUrl", {
+      value: `https://${distribution.distributionDomainName}`,
+      description: "The CloudFront URL."
+    });
+
+    new CfnOutput(this, "bucketWebsiteDomainName", {
+      value: `http://${bucket.bucketWebsiteDomainName}`,
+      description: "The Bucket URL."
     });
   }
 }

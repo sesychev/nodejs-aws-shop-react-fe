@@ -2,7 +2,7 @@
 
 - Automated Deployment:
 
-1. https://d1ozlgaj1ky6ky.cloudfront.net/
+1. https://d17gw16lv1zyqc.cloudfront.net
 2. http://rsstack-rsbucketaa7381f2-igfxiiu2yfpu.s3-website-eu-west-1.amazonaws.com/
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
