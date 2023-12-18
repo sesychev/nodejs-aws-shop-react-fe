@@ -40,9 +40,8 @@ root.render(
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.status === 400) alert(error.response.data.message);
-    if (error.response.status === 401) alert("You are not authorized.");
-    if (error.response.status === 403) alert(error.response.data.message);
+    if (error.response.status === 401 || error.response.status === 403)
+      alert(`You are not authorized. ${error?.response?.data?.message}`);
 
     return Promise.reject(error.response ?? error);
   }
