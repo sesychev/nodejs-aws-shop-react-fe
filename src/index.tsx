@@ -41,7 +41,7 @@ axios.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response.status === 401 || error.response.status === 403)
-      alert(`You are not authorized. ${error?.response?.data?.message}`);
+      alert(`${error?.response?.data?.message}`);
 
     return Promise.reject(error.response ?? error);
   }
